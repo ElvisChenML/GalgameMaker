@@ -1,42 +1,85 @@
-# HelloPlugin
+# GalgameMaker
 
-<!--
-## 插件开发者详阅
+[![Github stars](https://img.shields.io/github/stars/ElvisChenML/GalgameMaker?color=cd7373&logo=github&style=flat-square)](https://github.com/ElvisChenML/GalgameMaker/stargazers) ![github top language](https://img.shields.io/github/languages/top/ElvisChenML/GalgameMaker?logo=github) [![License](https://img.shields.io/github/license/ElvisChenML/GalgameMaker?&color=cd7373&style=flat-square)](./LICENSE) [![Static Badge](https://img.shields.io/badge/%E7%A4%BE%E5%8C%BA%E7%BE%A4-619154800-purple)](https://qm.qq.com/q/PClALFK242)
 
-### 开始
-
-此仓库是 QChatGPT 插件模板，您可以直接在 GitHub 仓库中点击右上角的 "Use this template" 以创建你的插件。  
-接下来按照以下步骤修改模板代码：
-
-#### 修改模板代码
-
-- 修改此文档顶部插件名称信息
-- 将此文档下方的`<插件发布仓库地址>`改为你的插件在 GitHub· 上的地址
-- 补充下方的`使用`章节内容
-- 修改`main.py`中的`@register`中的插件 名称、描述、版本、作者 等信息
-- 修改`main.py`中的`MyPlugin`类名为你的插件类名
-- 将插件所需依赖库写到`requirements.txt`中
-- 根据[插件开发教程](https://github.com/RockChinQ/QChatGPT/wiki/7-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91)编写插件代码
-- 删除 README.md 中的注释内容
-
-
-#### 发布插件
-
-推荐将插件上传到 GitHub 代码仓库，以便用户通过下方方式安装。   
-欢迎以 PR 或 issue 的形式投稿您的插件到[主程序文档](https://github.com/RockChinQ/QChatGPT#%E6%8F%92%E4%BB%B6%E7%94%9F%E6%80%81)
-
-下方是给用户看的内容，按需修改
--->
+* 社区群为QChatGPT社区群，有项目主程序或插件相关问题可至群内询问。
+* 提问前请先查看文档及Issue。
 
 ## 安装
 
 配置完成 [QChatGPT](https://github.com/RockChinQ/QChatGPT) 主程序后使用管理员账号向机器人发送命令即可安装：
 
 ```
-!plugin get <插件发布仓库地址>
+!plugin get https://github.com/ElvisChenML/GalgameMaker
 ```
 或查看详细的[插件安装说明](https://github.com/RockChinQ/QChatGPT/wiki/5-%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8)
 
+## 介绍
+
+将规定格式的Markdown剧情设计脚本转为QQ选项游戏。
+Easily create your own Galgame in QQ!
+
+* 初衷是搭配照片快速实现作为给朋友惊喜的礼物游戏。
+
+## 版本记录
+
+### GalgameMaker 预告
+
+* 存档功能：包含存档、读档、存档次数限制、读档冷却时间。
+
+### GalgameMaker 0.1
+
+* 新增 基础功能模块：包含配置、转换、发送、选择。
+
 ## 使用
 
-<!-- 插件开发者自行填写插件使用说明 -->
+### 开始
+
+* 请先完成内建示例剧情。
+* 查看并理解内建剧情设计文件（Story Example.md）。
+* 创作自己的设计文件。
+
+### 参数配置
+
+* QChatGPT\data\plugins\GalgameMaker\config\config.yaml
+
+  * 配置将分为 通用配置 “config.yaml”，以及会话配置 “config_&#91;会话&#93;.yaml”
+  * 会话配置 优先级高于 通用配置
+  * config_&#91;会话&#93;.yaml 中默认所有选项都是注释状态，需要激活请取消行开头的 “# ”
+
+  ``` yaml
+  # 通用配置
+  markdown_file: "Story Example" # 加载的Markdown路线设计文件
+  ```
+
+* QChatGPT\data\plugins\GalgameMaker\story\
+
+  * 剧情设计文件存放资料夹
+  * 请参考内建剧情设计文件进行修改：Story Example.md
+  * 图片：支援基于设计文件的相对路径、markdown base64、URL
+    * 基于设计文件的相对路径，参考：节点 1
+    * markdown base64，参考：节点 2
+    * URL，参考：节点 3
+
+  ``` markdown
+  # Story Example【设计文件标题（非必填项）】
+  
+  ## 节点 1: 初遇【节点名称（必填项）】
+  
+  ### 描述【节点文字（非必填项）】
+  你在公园遇到了一位神秘的女孩。【文字】
+  
+  ### 图片【节点图片（非必填项）】
+  ![](Story Example.assets/images.jpeg)【图片】
+  
+  ### 选项【节点选项（非必填项）】
+  #### 打招呼【选项文字，无个数限制】
+  节点 2: 问好【跳转的节点，需与“节点名称”完全相同】
+  #### 继续走路
+  节点 3: 离开
+  ```
+
+  ## 鸣谢🎉
+
+  感谢 [QChatGPT](https://github.com/RockChinQ/QChatGPT) 提供Bot功能及其他基础方法
+
